@@ -1,4 +1,4 @@
-name: Modules CI
+name: terraform-ci
 on:
   workflow_call:
 env:
@@ -13,3 +13,6 @@ jobs:
   document:
     needs: [lint, validate]
     uses: ./.github/workflows/documentation.yaml
+
+  version:
+    uses: ./.github/workflows/version.yaml
