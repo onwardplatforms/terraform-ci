@@ -12,7 +12,7 @@ jobs:
 
   document:
     needs: [lint, validate]
-    uses: ./.github/workflows/documentation.yaml
+    uses: ./.github/workflows/document.yaml
 
   version:
     uses: ./.github/workflows/version.yaml
