@@ -18,9 +18,9 @@ jobs:
       - name: Checkout CI repository
         uses: actions/checkout@v3
         with:
-          repository: 'claranet/terraform-modules-ci'
+          repository: 'onwardplatforms/terraform-ci'
           ref: 'main'
-          path: '.github/terraform-modules-ci'
+          path: '.github/terraform-ci'
 
       - name: TFDocs
         run: |

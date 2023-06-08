@@ -2,7 +2,7 @@ name: version
 on:
     workflow_call:
 jobs:
-  build:
+  version:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
