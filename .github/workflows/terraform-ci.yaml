@@ -15,4 +15,5 @@ jobs:
     uses: ./.github/workflows/document.yaml
 
   version:
+    needs: [document]
     uses: ./.github/workflows/version.yaml
