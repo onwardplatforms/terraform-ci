@@ -44,8 +44,8 @@ jobs:
         run: tflint --version
 
       - name: Init TFLint
-        run: tflint --init --config $GITHUB_WORKSPACE/.github/terraform-modules-ci/tflint.hcl
+        run: tflint --init --config $GITHUB_WORKSPACE/.github/terraform-ci/tflint.hcl
 
       - name: TFLint
         run: |
-          for d in . $(find . -maxdepth 2 -path './modules/*' -type d -print); do cd $d && echo "current dir $PWD" && terraform init && TFLINT_LOG=debug tflint --config $GITHUB_WORKSPACE/.github/terraform-modules-ci/tflint.hcl || exit $?; cd -; done
+          for d in . $(find . -maxdepth 2 -path './modules/*' -type d -print); do cd $d && echo "current dir $PWD" && terraform init && TFLINT_LOG=debug tflint --config $GITHUB_WORKSPACE/.github/terraform-ci/tflint.hcl || exit $?; cd -; done
