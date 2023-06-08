@@ -22,7 +22,7 @@ jobs:
           ref: 'main'
           path: '.github/terraform-ci'
 
-      - name: TFDocs
+      - name: Create Terraform Docs
         run: |
             for d in .; do terraform-docs $d --config .github/terraform-ci/terraform-docs.yml || exit $?; done
             for d in $(find . -maxdepth 2 -path './modules/*' -type d -print); do terraform-docs --hide requirements --anchor=false --lockfile=false markdown $d --output-file "README.md" || exit $?; done
