@@ -1,6 +1,11 @@
 name: document
 on:
   workflow_call:
+  push:
+      branches:
+          - '**'
+      paths-ignore:
+          - 'README.md'
 jobs:
   readme:
     runs-on: ubuntu-latest
@@ -29,3 +34,11 @@ jobs:
             # Need to add safe directory otherwise not recognized as a git repository
             git config --global --add safe.directory "$GITHUB_WORKSPACE"
             git diff --exit-code
+
+      - name: Commit and push changes
+        run: |
+            git config --global user.email "actions@github.com"
+            git config --global user.name "GitHub Actions"
+            git add README.md
+            git commit -m "Update README with new Terraform docs" || exit 0 
+            git push origin HEAD:${{ github.ref }}
