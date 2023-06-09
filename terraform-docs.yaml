@@ -5,10 +5,11 @@ settings:
   lockfile: false
 
 output:
-  file: "README.md"
+  file: README.md
 
 sections:
   hide: [requirements]
+  header-from: docs/header.md"
 
 content: |-
   
