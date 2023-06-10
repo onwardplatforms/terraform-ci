@@ -1,19 +1,30 @@
 formatter: "markdown"
 
+header-from: docs/header.md
+
 settings:
   anchor: false
   lockfile: false
+
+recursive:
+  enabled: false
+  path: modules
 
 output:
   file: README.md
 
 sections:
   hide: [requirements]
-  header-from: docs/header.md"
 
 content: |-
 
   {{ .Header }}
+
+  ## Example
+
+  ```hcl
+  {{ include "examples/main.tf" }}
+  ```  
   
   {{ .Providers }}
 
