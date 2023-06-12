@@ -7,7 +7,7 @@ jobs:
   plan:
     runs-on: ubuntu-latest
     container:
-        image: hashicorp/terraform:latest
+        image: zenika/terraform-azure-cli:latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
