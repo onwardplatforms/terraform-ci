@@ -15,8 +15,8 @@ jobs:
         with:
           terraform_version: 1.3.0
 
-      - name: Terraform Init
-        run: terraform init  -backend=false
-
-      - name: Terraform Plan
-        run: terraform plan
+      - name: Terraform Init and Plan
+        run: |
+          cd examples
+          terraform init -backend=false
+          terraform plan
