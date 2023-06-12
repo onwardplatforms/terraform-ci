@@ -14,7 +14,7 @@ jobs:
     uses: ./.github/workflows/security-scan.yaml
 
   plan:
-    needs: [lint, validate]
+    needs: [lint, validate, security-scan]
     uses: ./.github/workflows/terraform-plan.yaml
     secrets: inherit
 
