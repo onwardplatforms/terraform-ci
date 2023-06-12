@@ -10,6 +10,9 @@ jobs:
   lint:
     uses: ./.github/workflows/lint.yaml
 
+  security-scan:
+    uses: ./.github/workflows/security-scan.yaml
+
   plan:
     needs: [lint, validate]
     uses: ./.github/workflows/terraform-plan.yaml
