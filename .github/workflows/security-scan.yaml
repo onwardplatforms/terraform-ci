@@ -2,7 +2,7 @@ name: security scan
 on:
   workflow_call:
 jobs:
-  code-analysis:
+  security-scan:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
