@@ -44,3 +44,5 @@ jobs:
           TF_VAR_github_run_number: ${{ github.run_number }}
           TF_VAR_github_sha: ${{ github.sha }}
           TF_VAR_github_ref_name: ${{ github.head_ref }}
+          TF_VAR_github_actor: ${{ github.actor }}
+          TF_VAR_github_repository: ${{ github.repository }}
