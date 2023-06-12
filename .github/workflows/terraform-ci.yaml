@@ -10,8 +10,12 @@ jobs:
   lint:
     uses: ./.github/workflows/lint.yaml
 
+  plan:
+      needs: [lint, validate]
+      uses: ./.github/workflows/document.yaml
+
   document:
-    needs: [lint, validate]
+    needs: [plan]
     uses: ./.github/workflows/document.yaml
 
 #   version:
