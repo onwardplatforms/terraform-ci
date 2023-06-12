@@ -12,7 +12,7 @@ jobs:
 
   plan:
       needs: [lint, validate]
-      uses: ./.github/workflows/document.yaml
+      uses: ./.github/workflows/terraform-plan.yaml
 
   document:
     needs: [plan]
