@@ -11,8 +11,9 @@ jobs:
     uses: ./.github/workflows/lint.yaml
 
   plan:
-      needs: [lint, validate]
-      uses: ./.github/workflows/terraform-plan.yaml
+    needs: [lint, validate]
+    uses: ./.github/workflows/terraform-plan.yaml
+    secrets: inherit
 
   document:
     needs: [plan]
