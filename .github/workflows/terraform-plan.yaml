@@ -20,3 +20,8 @@ jobs:
           cd examples
           terraform init -backend=false
           terraform plan
+        env:
+          TF_VAR_github_run_id: ${{ github.run_id }}
+          TF_VAR_github_run_number: ${{ github.run_number }}
+          TF_VAR_github_sha: ${{ github.sha }}
+          TF_VAR_github_ref_name: ${{ github.ref }}
