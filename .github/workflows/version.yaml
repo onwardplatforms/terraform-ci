@@ -10,6 +10,13 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Checkout CI repository
+        uses: actions/checkout@v3
+        with:
+          repository: 'onwardplatforms/terraform-ci'
+          ref: 'main'
+          path: '.github/terraform-ci'
+
       - name: Install GitVersion
         uses: gittools/actions/gitversion/setup@v0
         with:
@@ -19,7 +26,7 @@ jobs:
         uses: gittools/actions/gitversion/execute@v0
         with:
           useConfigFile: true
-          configFilePath: gitversion.yml
+          configFilePath: .github/terraform-ci/gitversion.yml
 
       - name: Display GitVersion variables (with prefix)
         run: |
