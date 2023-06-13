@@ -22,6 +22,6 @@ jobs:
     needs: [plan]
     uses: ./.github/workflows/document.yaml
 
-#   version:
-#     needs: [document]
-#     uses: ./.github/workflows/version.yaml
+  version:
+    needs: [document]
+    uses: ./.github/workflows/version.yaml

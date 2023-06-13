@@ -7,24 +7,51 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
         with:
-          node-version: 18
+          fetch-depth: 0
 
-    #   - name: Install dependencies
-    #     run: npm ci
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0
+        with:
+          versionSpec: '5.x'
 
-    #   - name: Test
-    #     run: npm test
+      - name: Determine Version
+        uses: gittools/actions/gitversion/execute@v0
+        with:
+          useConfigFile: true
+          configFilePath: gitversion.yml
 
-      - name: Semantic Release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx semantic-release
-
-      - name: Generate Changelog
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx auto-changelog --commit-limit false --unreleased --template keepachangelog
+      - name: Display GitVersion variables (with prefix)
+        run: |
+          echo "Major: ${{ env.GitVersion_Major }}"
+          echo "Minor: ${{ env.GitVersion_Minor }}"
+          echo "Patch: ${{ env.GitVersion_Patch }}"
+          echo "PreReleaseTag: ${{ env.GitVersion_PreReleaseTag }}"
+          echo "PreReleaseTagWithDash: ${{ env.GitVersion_PreReleaseTagWithDash }}"
+          echo "PreReleaseLabel: ${{ env.GitVersion_PreReleaseLabel }}"
+          echo "PreReleaseNumber: ${{ env.GitVersion_PreReleaseNumber }}"
+          echo "WeightedPreReleaseNumber: ${{ env.GitVersion_WeightedPreReleaseNumber }}"
+          echo "BuildMetaData: ${{ env.GitVersion_BuildMetaData }}"
+          echo "BuildMetaDataPadded: ${{ env.GitVersion_BuildMetaDataPadded }}"
+          echo "FullBuildMetaData: ${{ env.GitVersion_FullBuildMetaData }}"
+          echo "MajorMinorPatch: ${{ env.GitVersion_MajorMinorPatch }}"
+          echo "SemVer: ${{ env.GitVersion_SemVer }}"
+          echo "LegacySemVer: ${{ env.GitVersion_LegacySemVer }}"
+          echo "LegacySemVerPadded: ${{ env.GitVersion_LegacySemVerPadded }}"
+          echo "AssemblySemVer: ${{ env.GitVersion_AssemblySemVer }}"
+          echo "AssemblySemFileVer: ${{ env.GitVersion_AssemblySemFileVer }}"
+          echo "FullSemVer: ${{ env.GitVersion_FullSemVer }}"
+          echo "InformationalVersion: ${{ env.GitVersion_InformationalVersion }}"
+          echo "BranchName: ${{ env.GitVersion_BranchName }}"
+          echo "EscapedBranchName: ${{ env.GitVersion_EscapedBranchName }}"
+          echo "Sha: ${{ env.GitVersion_Sha }}"
+          echo "ShortSha: ${{ env.GitVersion_ShortSha }}"
+          echo "NuGetVersionV2: ${{ env.GitVersion_NuGetVersionV2 }}"
+          echo "NuGetVersion: ${{ env.GitVersion_NuGetVersion }}"
+          echo "NuGetPreReleaseTagV2: ${{ env.GitVersion_NuGetPreReleaseTagV2 }}"
+          echo "NuGetPreReleaseTag: ${{ env.GitVersion_NuGetPreReleaseTag }}"
+          echo "VersionSourceSha: ${{ env.GitVersion_VersionSourceSha }}"
+          echo "CommitsSinceVersionSource: ${{ env.GitVersion_CommitsSinceVersionSource }}"
+          echo "CommitsSinceVersionSourcePadded: ${{ env.GitVersion_CommitsSinceVersionSourcePadded }}"
+          echo "UncommittedChanges: ${{ env.GitVersion_UncommittedChanges }}"
+          echo "CommitDate: ${{ env.GitVersion_CommitDate }}"
