@@ -13,15 +13,11 @@ jobs:
   security-scan:
     uses: ./.github/workflows/security-scan.yaml
 
-  plan:
+  terraform:
     needs: [lint, validate, security-scan]
-    uses: ./.github/workflows/terraform-plan.yaml
+    uses: ./.github/workflows/terraform.yaml
     secrets: inherit
 
   document:
-    needs: [plan]
+    needs: [terraform]
     uses: ./.github/workflows/document.yaml
-
-  version:
-    needs: [document]
-    uses: ./.github/workflows/version.yaml
