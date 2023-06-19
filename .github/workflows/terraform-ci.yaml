@@ -5,29 +5,29 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
   validate:
-    uses: ./.github/workflows/terraform/validate.yaml
+    uses: ./.github/workflows/terraform-validate.yaml
 
   lint:
-    uses: ./.github/workflows/tflint/run.yaml
+    uses: ./.github/workflows/tflint-run.yaml
 
   security-scan:
-    uses: ./.github/workflows/tfsec/run.yaml
+    uses: ./.github/workflows/tfsec-run.yaml
 
   terraform-plan:
     needs: [lint, validate, security-scan]
-    uses: ./.github/workflows/terraform/plan.yaml
+    uses: ./.github/workflows/terraform-plan.yaml
     secrets: inherit
 
   terraform-apply:
     needs: [terraform-plan]
-    uses: ./.github/workflows/terraform/apply.yaml
+    uses: ./.github/workflows/terraform-apply.yaml
     secrets: inherit
 
   terraform-destroy:
     needs: [terraform-apply]
-    uses: ./.github/workflows/terraform/destroy.yaml
+    uses: ./.github/workflows/terraform-destroy.yaml
     secrets: inherit
 
   document:
     needs: [terraform-destroy]
-    uses: ./.github/workflows/terraform-docs/run.yaml
+    uses: ./.github/workflows/terraform-docs-run.yaml
