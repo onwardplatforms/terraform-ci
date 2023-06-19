@@ -1,5 +1,6 @@
 name: Terraform Apply
 on:
+  workflow_call:
   workflow_dispatch:
 jobs:
   apply:
